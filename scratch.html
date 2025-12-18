@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Scratch Page - Ariana Orellana</title>
+  <link rel="stylesheet" href="styles/styles.css">
+</head>
+<body>
+
+  <!-- Navigation -->
+  <nav class="navbar">
+      <a href="index.html">Home</a>
+      <a href="about.html">About</a>
+      <a href="data.html">Data</a> <!-- Data antes de Resume -->
+      <a href="resume.html">Resume</a>
+      <a href="scratch.html">Scratch</a>
+  </nav>
+
+  <main class="main-content">
+
+    <section class="about">
+      <h2>🎁 Peru Trivia</h2>
+      <p>Click the button to see a question about Peru!</p>
+
+      <!-- Contenedor de la pregunta -->
+      <p id="triviaQuestion">Press the button to start!</p>
+
+      <!-- Contenedor de la respuesta -->
+      <p id="triviaAnswer" style="color: #B22234; cursor: pointer;">
+        (Hover or click to reveal answer)
+      </p>
+
+      <!-- Botón -->
+      <button class="btn" id="nextBtn">Next Riddle</button>
+    </section>
+
+  </main>
+
+  <footer class="footer">
+      <p>© 2025 Ariana Orellana</p>
+  </footer>
+
+  <script>
+    const triviaList = [
+      { question: "What is the traditional Peruvian dish made of raw fish marinated in lime juice?", answer: "Ceviche 🇵🇪" },
+      { question: "Which ancient civilization built Machu Picchu?", answer: "The Inca Empire 🏯" },
+      { question: "What is the capital city of Peru?", answer: "Lima 🏙️" },
+      { question: "Which colorful festival celebrates the harvest in Cusco?", answer: "Inti Raymi ☀️" },
+      { question: "What is the famous Peruvian corn beer called?", answer: "Chicha 🍺" }
+    ];
+
+    let currentIndex = -1;
+
+    document.getElementById("nextBtn").addEventListener("click", function() {
+      let newIndex;
+      do {
+        newIndex = Math.floor(Math.random() * triviaList.length);
+      } while (newIndex === currentIndex);
+      currentIndex = newIndex;
+
+      const questionEl = document.getElementById("triviaQuestion");
+      const answerEl = document.getElementById("triviaAnswer");
+
+      questionEl.textContent = triviaList[currentIndex].question;
+      answerEl.textContent = "(Hover or click to reveal answer)";
+
+      answerEl.onmouseover = () => answerEl.textContent = triviaList[currentIndex].answer;
+      answerEl.onclick = () => answerEl.textContent = triviaList[currentIndex].answer;
+      answerEl.onmouseout = () => answerEl.textContent = "(Hover or click to reveal answer)";
+    });
+  </script>
+
+</body>
+</html>
